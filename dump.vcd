@@ -1,35 +1,68 @@
 $date
-	Tue Oct  6 10:53:02 2020
+	Fri Oct  9 17:49:31 2020
 $end
 $version
 	Icarus Verilog
 $end
 $timescale
-	1ns
+	1s
 $end
-$scope module main $end
-$var wire 1 ! c $end
-$var reg 1 " a $end
-$var reg 1 # b $end
-$scope module AND_gate $end
-$var wire 1 " a $end
-$var wire 1 # b $end
-$var wire 1 ! c $end
+$scope module dec7seg_test $end
+$var wire 8 ! led [7:0] $end
+$var reg 4 " data [3:0] $end
+$scope module i0 $end
+$var wire 4 # data [3:0] $end
+$var reg 8 $ LED [7:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-0#
-0"
-0!
+b1110111 $
+b0 #
+b0 "
+b1110111 !
 $end
-#200
-1#
-#300
-0#
-1"
-#400
-1!
-1#
-#500
+#10
+b1111100 !
+b1111100 $
+b1 "
+b1 #
+#20
+b111001 !
+b111001 $
+b10 "
+b10 #
+#30
+b1011110 !
+b1011110 $
+b11 "
+b11 #
+#40
+b1111001 !
+b1111001 $
+b100 "
+b100 #
+#50
+b1110001 !
+b1110001 $
+b101 "
+b101 #
+#60
+b0 !
+b0 $
+b110 "
+b110 #
+#70
+b111 "
+b111 #
+#80
+b1000 "
+b1000 #
+#90
+b1001 "
+b1001 #
+#100
+b1010 "
+b1010 #
+#110
