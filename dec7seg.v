@@ -2,8 +2,8 @@ module dec7seg(data, LED);
 input [3:0] data;
 output [7:0] LED;
 
-wire [3:0] data;
-reg [7:0] LED;
+wire [3:0] data; // 4bit
+reg [7:0] LED; // 8bit
 
 always @(data) begin
   case (data)
