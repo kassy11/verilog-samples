@@ -1,4 +1,4 @@
-module JKFF (J, K, CLK, Q, QB);
+module jkff (J, K, CLK, Q, QB);
 	input J, K, CLK;
 	output Q, QB;
 	reg Q;	
@@ -8,40 +8,41 @@ module JKFF (J, K, CLK, Q, QB);
 	always@(posedge CLK) begin	
 		if(J==1) begin
 			if(K==1) begin
-				Q <= ~Q;	
-			end else begin
+				Q <= ~Q;	// J=K=1のときは反転
+			end else begin // J=1, K=0のときセット
 				Q <= 1;		
 			end
 		end else begin
 			if(K==1) begin
-				Q <= 0;		
+				Q <= 0;		// J=0, K=1のときはリセット
 			end
 		end
 	end
 endmodule
 
-`timescale 10ps / 10ps
+module jkff_test();
+  reg j, k, clk;
+  wire q, qb;
 
-module TESTBENCH;
-	reg J, K, CLK;
-	wire Q, QB;
-	
-	JKFF CUT(.J(J), .K(K), .CLK(CLK), .Q(Q), .QB(QB));
-	
-	initial begin
-		$dumpfile("JKFF.vcd");
-		$dumpvars(1, TESTBENCH);
-		
-		CLK <= 0;
-		J <= 0; K <= 0; #10 CLK <= 1; #50 CLK <= 0; #40 // 保持
-		J <= 1; K <= 0; #10 CLK <= 1; #50 CLK <= 0; #40 // セット
-		J <= 0; K <= 0; #10 CLK <= 1; #50 CLK <= 0; #40 // 保持
-		J <= 0; K <= 1; #10 CLK <= 1; #50 CLK <= 0; #40 // リセット	
-		J <= 0; K <= 0; #10 CLK <= 1; #50 CLK <= 0; #40 // 保持
-		J <= 1; K <= 1; #10 CLK <= 1; #50 CLK <= 0; #50 // 反転
-                                    CLK <= 1; #50 CLK <= 0; #50 // 反転
-                                    CLK <= 1; #50 CLK <= 0; #50 // 反転
-                    /* 通常、JK値と クロックは同時に変化させない */
-		$finish;
-	end
+  jkff JKFF(j, k, clk, q, qb);
+
+  initial begin
+    $monitor("J=%d, K=%d, CLK=%d, Q=%d, QB=%d", j, k, clk, q, qb);
+    $dumpfile("jkff_test.vcd");
+    $dumpvars(0, jkff_test);
+  end
+
+  initial begin
+    j=0; k=1; clk=1; 
+    #10 clk=0;
+    #10 j=1; k=0; clk=1;
+    #10 clk=0;
+    #10 j=0; k=0; clk=1;
+    #10 clk=0;
+    #10 j=1; k=0; clk=1;
+    #10 clk=0;
+    #10 j=0; k=1; clk=1;
+    #10 clk=0;
+    #10 $finish;
+  end
 endmodule

@@ -1,0 +1,48 @@
+$date
+	Wed Oct 14 00:06:48 2020
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module T_FF_test $end
+$var wire 1 ! q $end
+$var reg 1 " clock $end
+$var reg 1 # reset $end
+$var reg 1 $ trigger $end
+$scope module TFF $end
+$var wire 1 " CLK $end
+$var wire 1 # RST $end
+$var wire 1 $ T $end
+$var reg 1 ! Q $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+1$
+0#
+1"
+0!
+$end
+#10
+0"
+#20
+1!
+1#
+1"
+#30
+0"
+#40
+0!
+1"
+#50
+0"
+#60
+1!
+1"
+#70
+0"
+#80
