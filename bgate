@@ -1,0 +1,31 @@
+#! /usr/local/Cellar/icarus-verilog/10.3/bin/vvp
+:ivl_version "10.3 (stable)" "(v10_3)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x7fb276c05f60 .scope module, "bgate" "bgate" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A"
+    .port_info 1 /INPUT 1 "B"
+    .port_info 2 /INPUT 1 "C"
+    .port_info 3 /OUTPUT 1 "X"
+o0x7fb276e32008 .functor BUFZ 1, C4<z>; HiZ drive
+o0x7fb276e32038 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x7fb276c18540 .functor OR 1, o0x7fb276e32008, o0x7fb276e32038, C4<0>, C4<0>;
+o0x7fb276e32068 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x7fb276c18610 .functor NOT 1, o0x7fb276e32068, C4<0>, C4<0>, C4<0>;
+L_0x7fb276c186c0 .functor AND 1, L_0x7fb276c18540, L_0x7fb276c18610, C4<1>, C4<1>;
+v0x7fb276c060c0_0 .net "A", 0 0, o0x7fb276e32008;  0 drivers
+v0x7fb276c18190_0 .net "B", 0 0, o0x7fb276e32038;  0 drivers
+v0x7fb276c18230_0 .net "C", 0 0, o0x7fb276e32068;  0 drivers
+v0x7fb276c182c0_0 .net "X", 0 0, L_0x7fb276c186c0;  1 drivers
+v0x7fb276c18360_0 .net *"_s0", 0 0, L_0x7fb276c18540;  1 drivers
+v0x7fb276c18450_0 .net *"_s2", 0 0, L_0x7fb276c18610;  1 drivers
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "bgate.v";
