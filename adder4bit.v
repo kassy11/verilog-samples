@@ -55,6 +55,9 @@ module adder_test();
     a=0001; b=0010; mode=0;
     #10	a=001; b=001; mode=0;
     #10	a=001; b=111; mode=0;
+    #10	a=001; b=111; mode=0;
+    #10	a=101; b=111; mode=1;
+    #10	a=101; b=111; mode=0;
     #10	$finish;
   end
 

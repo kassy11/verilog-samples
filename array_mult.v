@@ -1,5 +1,12 @@
 // http://www.icsd2.tj.chiba-u.jp/~kitakami/lab-2013/ans3.htm
 
+module array_mult();
+
+  adder8bit ADDER0();
+  adder8bit ADDER1();
+  adder8bit ADDER2();
+endmodule
+
 module adder8bit(A, B, MODE, S, CO);
   input [7:0] A;
   input [7:0] B;
@@ -50,31 +57,6 @@ module HALF_ADDER(A,B,S,CO);
   assign CO = A & B;
   assign S = (A | B) & ~CO;
 endmodule
-
-// module FULL_ADDER_test();
-//   reg a, b, ci;
-//   wire s, co;
-
-//   FULL_ADDER adder(a, b, ci, s, co);
-
-//   initial begin
-//     a=0; b=0; ci=0;
-//     #10 a=0; b=0; ci=0;
-//     #10 a=0; b=0; ci=1;
-//     #10 a=0; b=1; ci=0;
-//     #10 a=0; b=1; ci=1;
-//     #10 a=1; b=0; ci=0;
-//     #10 a=1; b=0; ci=1;
-//     #10 a=1; b=1; ci=0;
-//     #10 a=1; b=1; ci=1;
-//   end
-
-//   initial begin
-//     $monitor("a=%d, b=%d, ci=%d, s=%d, co=%d", a, b, ci, s, co);
-//     $dumpfile("full_adder.vcd");
-//     $dumpvars(0, FULL_ADDER_test);
-//   end  
-// endmodule
 
 module adder_test();
   reg [7:0] a;
