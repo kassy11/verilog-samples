@@ -1,0 +1,73 @@
+$date
+	Wed Oct 21 08:39:38 2020
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module mux5to1_test $end
+$var wire 3 ! Out [2:0] $end
+$var reg 3 " In1 [2:0] $end
+$var reg 3 # In2 [2:0] $end
+$var reg 3 $ In3 [2:0] $end
+$var reg 3 % In4 [2:0] $end
+$var reg 3 & In5 [2:0] $end
+$var reg 3 ' sel [2:0] $end
+$scope module MUX $end
+$var wire 3 ( In1 [2:0] $end
+$var wire 3 ) In2 [2:0] $end
+$var wire 3 * In3 [2:0] $end
+$var wire 3 + In4 [2:0] $end
+$var wire 3 , In5 [2:0] $end
+$var wire 3 - Sel [2:0] $end
+$var reg 3 . Out [2:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b111 .
+b0 -
+b110 ,
+b110 +
+b110 *
+b110 )
+b111 (
+b0 '
+b110 &
+b110 %
+b110 $
+b110 #
+b111 "
+b111 !
+$end
+#10
+b111 #
+b111 )
+b110 "
+b110 (
+b1 '
+b1 -
+#20
+b111 $
+b111 *
+b110 #
+b110 )
+b10 '
+b10 -
+#30
+b111 %
+b111 +
+b110 $
+b110 *
+b11 '
+b11 -
+#40
+b111 &
+b111 ,
+b110 %
+b110 +
+b100 '
+b100 -

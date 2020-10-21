@@ -24,3 +24,20 @@ module counter4bit(sysclk,reset, Q1,Q2,Q3,Q4);
             Q <= RST ? Q ^ T: 0;
     end
 endmodule
+
+module counter4bit_test();
+  reg sysclk, reset;
+  wire q1, q2, q3, q4;
+
+  counter4bit COUNTER(sysclk, reset, q1, q2, q3, q4);
+
+  initial begin
+    sysclk=1; reset
+  end
+
+  initial begin
+    $monitor("data=%b, LED=%b", data, led);
+    $dumpfile("counter4bit.vcd");
+    $dumpvars(0, counter4bit_test);
+  end
+endmodule

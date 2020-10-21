@@ -36,5 +36,5 @@ module T_FF_test();
     #10 clock=0;
     #10 $finish;
   end
-  
 endmodule
+

@@ -1,0 +1,193 @@
+$date
+	Wed Oct 21 10:41:24 2020
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module adder_test $end
+$var wire 4 ! s [3:0] $end
+$var wire 1 " co $end
+$var reg 4 # a [3:0] $end
+$var reg 4 $ b [3:0] $end
+$var reg 1 % mode $end
+$scope module adder $end
+$var wire 4 & A [3:0] $end
+$var wire 4 ' B [3:0] $end
+$var wire 4 ( BX [3:0] $end
+$var wire 1 % P $end
+$var wire 1 ) U2_CO $end
+$var wire 1 * U1_CO $end
+$var wire 1 + U0_CO $end
+$var wire 4 , S [3:0] $end
+$var wire 1 " CO $end
+$scope module U0 $end
+$var wire 1 - A $end
+$var wire 1 . B $end
+$var wire 1 % CI $end
+$var wire 1 + CO $end
+$var wire 1 / U2_CO $end
+$var wire 1 0 U1_S $end
+$var wire 1 1 U1_CO $end
+$var wire 1 2 S $end
+$scope module U1 $end
+$var wire 1 - A $end
+$var wire 1 . B $end
+$var wire 1 1 CO $end
+$var wire 1 0 S $end
+$upscope $end
+$scope module U2 $end
+$var wire 1 0 A $end
+$var wire 1 % B $end
+$var wire 1 / CO $end
+$var wire 1 2 S $end
+$upscope $end
+$upscope $end
+$scope module U1 $end
+$var wire 1 3 A $end
+$var wire 1 4 B $end
+$var wire 1 + CI $end
+$var wire 1 * CO $end
+$var wire 1 5 U2_CO $end
+$var wire 1 6 U1_S $end
+$var wire 1 7 U1_CO $end
+$var wire 1 8 S $end
+$scope module U1 $end
+$var wire 1 3 A $end
+$var wire 1 4 B $end
+$var wire 1 7 CO $end
+$var wire 1 6 S $end
+$upscope $end
+$scope module U2 $end
+$var wire 1 6 A $end
+$var wire 1 + B $end
+$var wire 1 5 CO $end
+$var wire 1 8 S $end
+$upscope $end
+$upscope $end
+$scope module U2 $end
+$var wire 1 9 A $end
+$var wire 1 : B $end
+$var wire 1 * CI $end
+$var wire 1 ) CO $end
+$var wire 1 ; U2_CO $end
+$var wire 1 < U1_S $end
+$var wire 1 = U1_CO $end
+$var wire 1 > S $end
+$scope module U1 $end
+$var wire 1 9 A $end
+$var wire 1 : B $end
+$var wire 1 = CO $end
+$var wire 1 < S $end
+$upscope $end
+$scope module U2 $end
+$var wire 1 < A $end
+$var wire 1 * B $end
+$var wire 1 ; CO $end
+$var wire 1 > S $end
+$upscope $end
+$upscope $end
+$scope module U3 $end
+$var wire 1 ? A $end
+$var wire 1 @ B $end
+$var wire 1 ) CI $end
+$var wire 1 " CO $end
+$var wire 1 A U2_CO $end
+$var wire 1 B U1_S $end
+$var wire 1 C U1_CO $end
+$var wire 1 D S $end
+$scope module U1 $end
+$var wire 1 ? A $end
+$var wire 1 @ B $end
+$var wire 1 C CO $end
+$var wire 1 B S $end
+$upscope $end
+$scope module U2 $end
+$var wire 1 B A $end
+$var wire 1 ) B $end
+$var wire 1 A CO $end
+$var wire 1 D S $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+1D
+0C
+1B
+0A
+1@
+0?
+0>
+0=
+0<
+0;
+0:
+09
+18
+07
+16
+05
+14
+03
+12
+01
+10
+0/
+0.
+1-
+b1011 ,
+0+
+0*
+0)
+b1010 (
+b1010 '
+b1 &
+0%
+b1010 $
+b1 #
+0"
+b1011 !
+$end
+#10
+02
+b10 !
+b10 ,
+0D
+00
+1+
+06
+0B
+11
+1.
+04
+0@
+b1 (
+b1 $
+b1 '
+#20
+1"
+1A
+1)
+08
+1;
+1*
+0>
+b0 !
+b0 ,
+0D
+15
+16
+1<
+1B
+14
+1:
+1@
+b1111 (
+b1111 $
+b1111 '
+#30

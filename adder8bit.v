@@ -1,7 +1,9 @@
+// http://www.icsd2.tj.chiba-u.jp/~kitakami/lab-2013/ans3.htm
+
 module adder8bit(A, B, MODE, S, CO);
   input [7:0] A;
   input [7:0] B;
-  input MODE;
+  input MODE; // mode=0のとき加算
   output [7:0] S;
   output CO;
 
@@ -14,8 +16,9 @@ module adder8bit(A, B, MODE, S, CO);
   wire U5_CO;
   wire U6_CO;
 
-  assign BX = B ^ {7{MODE}};   // 1の補数を求める
+  assign BX = B ^ {8{MODE}};   // 1の補数を求める
 
+  // 8bitなので全加算器８個接続
   FULL_ADDER U0 (.A(A[0]), .B(BX[0]), .CI(P), .S(S[0]), .CO(U0_CO));
   FULL_ADDER U1 (.A(A[1]), .B(BX[1]), .CI(U0_CO), .S(S[1]), .CO(U1_CO));
   FULL_ADDER U2 (.A(A[2]), .B(BX[2]), .CI(U1_CO), .S(S[2]), .CO(U2_CO));
@@ -26,6 +29,7 @@ module adder8bit(A, B, MODE, S, CO);
   FULL_ADDER U7 (.A(A[7]), .B(BX[7]), .CI(U6_CO), .S(S[7]), .CO(CO));
 endmodule
 
+// 全加算器
 module FULL_ADDER(A, B, CI, S, CO);
   input A,B,CI;
   output S,CO;
@@ -40,12 +44,38 @@ module FULL_ADDER(A, B, CI, S, CO);
   assign CO = U1_CO | U2_CO;
 endmodule
 
+// 半加算器
 module HALF_ADDER(A,B,S,CO);
   input A, B;
   output S, CO;
   assign CO = A & B;
   assign S = (A | B) & ~CO;
 endmodule
+
+// module FULL_ADDER_test();
+//   reg a, b, ci;
+//   wire s, co;
+
+//   FULL_ADDER adder(a, b, ci, s, co);
+
+//   initial begin
+//     a=0; b=0; ci=0;
+//     #10 a=0; b=0; ci=0;
+//     #10 a=0; b=0; ci=1;
+//     #10 a=0; b=1; ci=0;
+//     #10 a=0; b=1; ci=1;
+//     #10 a=1; b=0; ci=0;
+//     #10 a=1; b=0; ci=1;
+//     #10 a=1; b=1; ci=0;
+//     #10 a=1; b=1; ci=1;
+//   end
+
+//   initial begin
+//     $monitor("a=%d, b=%d, ci=%d, s=%d, co=%d", a, b, ci, s, co);
+//     $dumpfile("full_adder.vcd");
+//     $dumpvars(0, FULL_ADDER_test);
+//   end  
+// endmodule
 
 module adder_test();
   reg [7:0] a;
@@ -57,13 +87,13 @@ module adder_test();
   adder8bit adder(a, b, mode, s, co);
 
   initial begin
-    a=01010101; b=00010101; mode=1;
-    #10	a=01010101; b=00101110; mode=1;
+    a=00000001; b=00000001; mode=0;
+    #10	a=01010101; b=00101110; mode=0;
     #10	$finish;
   end
 
   initial begin
-    $monitor("a=%4b b=%4b mode=%d s=%4b co=%d", a, b, mode, s, co);
+    $monitor("a=%8b b=%8b mode=%d s=%8b co=%d", a, b, mode, s, co);
     $dumpfile("adder_test.vcd");
     $dumpvars(0, adder_test);
   end

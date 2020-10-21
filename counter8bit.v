@@ -19,3 +19,5 @@ module counter8bit(CLK,RST,CE,Q);
         end
     end
 endmodule
+
+
