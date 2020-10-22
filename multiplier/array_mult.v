@@ -1,16 +1,47 @@
 // http://www.icsd2.tj.chiba-u.jp/~kitakami/lab-2013/ans3.htm
 
-module array_mult();
-
-  adder8bit ADDER0();
-  adder8bit ADDER1();
-  adder8bit ADDER2();
+module MULTIPLIER8(
+        input [7:0] A,
+        input [7:0] B,
+        output [15:0] Y
+        );
+        
+        wire [7:0] AB3;
+        wire [7:0] AB2;
+        wire [7:0] AB1;
+        wire [7:0] AB0;
+        
+        wire [7:0] U4_S;
+        wire [7:0] U5_S;
+        wire U4_CO;
+        wire U5_CO;
+        
+        MULTIPLIER8X1 U0 (.A(A), .B(B[0]), .Y(AB0));
+        MULTIPLIER8X1 U1 (.A(A), .B(B[1]), .Y(AB1));
+        MULTIPLIER8X1 U2 (.A(A), .B(B[2]), .Y(AB2));
+        MULTIPLIER8X1 U3 (.A(A), .B(B[3]), .Y(AB3));
+        
+        assign Y[0] = AB0[0];
+        adder8bit U4 (.A({1'b0,  AB0[7:1]}), .B(AB1), .P(01'b0), .S(U4_S), .CO(U4_CO));
+        assign Y[1] = U4_S[0];
+        adder8bit U5 (.A({U4_CO, U4_S[7:1]}), .B(AB2), .P(1'b0), .S(U5_S), .CO(U5_CO));
+        assign Y[2] = U5_S[0];
+        adder8bit U6 (.A({U5_CO, U5_S[7:1]}), .B(AB3), .P(1'b0), .S(Y[14:7]), .CO(Y[15]));
 endmodule
 
-module adder8bit(A, B, MODE, S, CO);
+module MULTIPLIER8X1(
+        input [7:0] A,
+        input B,
+        output [7:0] Y
+        );
+        
+        assign Y = A & {8{B}};
+endmodule
+
+module adder8bit(A, B, P, S, CO);
   input [7:0] A;
   input [7:0] B;
-  input MODE; // mode=0のとき加算
+  input P; // mode=0のとき加算
   output [7:0] S;
   output CO;
 
@@ -23,10 +54,10 @@ module adder8bit(A, B, MODE, S, CO);
   wire U5_CO;
   wire U6_CO;
 
-  assign BX = B ^ {8{MODE}};   // 1の補数を求める
+  assign BX = B ^ {8{P}};   // 1の補数を求める
 
   // 8bitなので全加算器８個接続
-  FULL_ADDER U0 (.A(A[0]), .B(BX[0]), .CI(MODE), .S(S[0]), .CO(U0_CO));
+  FULL_ADDER U0 (.A(A[0]), .B(BX[0]), .CI(P), .S(S[0]), .CO(U0_CO));
   FULL_ADDER U1 (.A(A[1]), .B(BX[1]), .CI(U0_CO), .S(S[1]), .CO(U1_CO));
   FULL_ADDER U2 (.A(A[2]), .B(BX[2]), .CI(U1_CO), .S(S[2]), .CO(U2_CO));
   FULL_ADDER U3 (.A(A[3]), .B(BX[3]), .CI(U2_CO), .S(S[3]), .CO(U3_CO));
@@ -79,7 +110,7 @@ module adder_test();
 
   initial begin
     
-    $monitor("a=%8b b=%8b mode=%d s=%b co=%d", a, b, mode, s, co);
+    $monitor("a=%b b=%b mode=%d s=%b co=%d", a, b, mode, s, co);
     $dumpfile("adder_test.vcd");
     $dumpvars(0, adder_test);
   end
